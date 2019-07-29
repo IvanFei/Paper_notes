@@ -2,7 +2,7 @@
 > 该论文发表在MUN 2005 上。
 
 ### 解决的问题(Motivation)
-![fig1](imgs/ImageRetargeting_2.png)
+![fig1](imgs/ImageRetargeting_1.png)
 图像裁剪时，由于图像中两个显著性物体分得比较开，使得无法裁剪，如上左图所示。所以遇到这样的图，只能进行“粗暴”地resizing
 
 本文提出图像重定向的方法来解决上面的问题,图上中图所示。
