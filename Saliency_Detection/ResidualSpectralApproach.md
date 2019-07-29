@@ -26,7 +26,7 @@ H(Prior knowledge)为冗余部分，即背景
 E[A(f)] \propto 1 / f
 ```
 且，无数张自然图片的振幅-频率图最后呈现一定趋势，如图：
-![fig1](imgs/ResidualSpecrtralApproach_2.png)
+![fig1](imgs/ResidualSpecrtralApproach_1.png)
 
 ### 算法步骤
 - 获取图像幅值图:
