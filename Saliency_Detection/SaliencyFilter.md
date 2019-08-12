@@ -53,7 +53,7 @@ S_i = U_i* exp(-k*D_k)
 ```math
 \hat{S}_i = \sum_{j=1}^{N} w_{i,j}S_i
 ```
-其中`$w_{i,j} = 1/Z * exp(-1/2(\alpha||c_i - cj|| + \beta||p_i-p_j||)）$`。综合考虑位置和颜色特征。为上采样时提供足够的视野。
+中`$w_{i,j} = 1/Z * exp(-1/2(\alpha||c_i - cj|| + \beta||p_i-p_j||)）$`。综合考虑位置和颜色特征。为上采样时提供足够的视野。
 
 ## 结果
 ![fig1](imgs/SF_1.png)
