@@ -62,10 +62,10 @@ w_{spa}(p, p_i) = exp(-\frac{d^2_{spa}(p, p_i)}{2\sigma_{spa}^2})
 w_i^{bg} = 1 - exp(-\frac{BndCon^2(p_i)}{2\sigma^2_{bndCon}})
 ```
 
-4. 集成并求最优解
-![fig2](RBD_2.png)
+5. 集成并求最优解
+![fig2](imgs/RBD_2.png)
 
 ## 结果
-![fig3](RBD_3.png)
+![fig3](imgs/RBD_3.png)
 
     
