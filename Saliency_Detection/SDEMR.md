@@ -36,8 +36,6 @@ binary-map的方法，当然也是可以用在non-binary-map。
 #### 5. ROC/AUC
 计算方法与PR曲线的计算方法相同，不同的在于ROC曲线是使用真阳率 假阳率。
 
-![fig5](imgs/SDEMR_5.png)
-
 #### 6. Fwb measure
 > How to Evaluate Foreground Maps? - CVPR 2014
 - Motivation
@@ -45,18 +43,18 @@ binary-map的方法，当然也是可以用在non-binary-map。
 总结了经典方法的缺点：
 1. Interpolation flaw
 
-![fig6](imgs/SDEMR_6.png)
+![fig5](imgs/SDEMR_5.png)
 
 对于上图所示，a,b 两者的AP AUC的方法是没有区别的，但是这个是不对的。
 2. Dependency flaw
 
-![fig7](imgs/SDEMR_7.png)
+![fig6](imgs/SDEMR_6.png)
 
 经典方法中忽略不同区域或者相同区域像素点之间的相关性，所以导致上述问题。
 
 3. Equal-importance flaw
 
-![fig8](imgs/SDEMR_8.png)
+![fig7](imgs/SDEMR_7.png)
 
 对于不同位置的错误应该有不同的权重
 
@@ -64,26 +62,26 @@ binary-map的方法，当然也是可以用在non-binary-map。
 
 针对与Interpolation flaw, 是由于TP, FP, FN, TN 的计算方法是硬性的。所以使用non-binary map 进行计算TP FP FN TN
 
-![fig9](imgs/SDEMR_9.png)
+![fig8](imgs/SDEMR_8.png)
 
 对于Dependency flaw 和 equal-importance flaw, 使用不同的权重进行约束解决。将上式转换成error的表达式。
 
-![fig10](imgs/SDEMR_10.png)
+![fig9](imgs/SDEMR_9.png)
 
 对不同区域附上不同的权重，A和B
 
-![fig11](imgs/SDEMR_11.png)
+![fig10](imgs/SDEMR_10.png)
 
-![fig12](imgs/SDEMR_12.png)
+![fig11](imgs/SDEMR_11.png)
 
 其中A 和 B 为：
 A：在foreground区域的预测加上了空间距离的约束
 
-![fig13](imgs/SDEMR_13.png)
+![fig12](imgs/SDEMR_12.png)
 
 B：在background区域加上与gt区域的约束，从而增加在FP区域的误差值。
 
-![fig14](imgs/SDEMR_14.png)
+![fig13](imgs/SDEMR_13.png)
 
 最后，通过F-measure 使用TPw计算，即为Fwb。
 
@@ -94,7 +92,7 @@ B：在background区域加上与gt区域的约束，从而增加在FP区域的�
     1. Application Ranking
     使用应用(Application)来验证评价指标对于不同算法产生foreground的排序是否合理。其中Apps可以是图像检索，物体检测，图像分割等。方法如下图所示：通过预测的foreground与GT的相似度进行ranking。
 
-![fig15](imgs/SDEMR_15.png)
+![fig14](imgs/SDEMR_14.png)
     
     2. SOTA vs Generic
     使用高斯核产生的显著区域与SOTA方法产生的区域进行平方ranking。并计算错误排序率
@@ -120,7 +118,7 @@ B：在background区域加上与gt区域的约束，从而增加在FP区域的�
 
 借助图像质量评估领域中使用的方法Structural similarity measure(SSIM)。式子如下所示：
 
-![fig16](imgs/SDEMR_16.png)
+![fig15](imgs/SDEMR_15.png)
 
 其中第一项为亮度相似度，第二项为对比对的相似度，第三项为结构的相似度，由向量`$(x-\hat x)/\sigma_x$` 和 `$(y-\hat y)/\sigma_y$`的相似度，x为map的向量表示，减去亮度和对比度的干扰，即为两个图像向量表示的相似度。
 
@@ -130,13 +128,13 @@ B：在background区域加上与gt区域的约束，从而增加在FP区域的�
 
 分别按照下式计算foreground map 和 background map 与 ground truth的相似度。之后进行求和。
 
-![fig17](imgs/SDEMR_17.png)
+![fig16](imgs/SDEMR_16.png)
 
 上式可知，使用non-binary map的foreground计算与gt的foreground的全局相似度(物体相似度)
 
 最后计算评价值：
 
-![fig18](imgs/SDEMR_18.png)
+![fig17](imgs/SDEMR_17.png)
 
 - Mate-Measuers
 
@@ -152,12 +150,12 @@ B：在background区域加上与gt区域的约束，从而增加在FP区域的�
 
 作者提出的解决方法比较简单直观，如下图所示：
 
-![fig19](imgs/SDEMR_19.png)
+![fig18](imgs/SDEMR_18.png)
 
     1. 首先，计算GT和FM图的均值(image-level信息)；
     2. 然后，GT和FM减去相应的均值,可以看成是中心化的操作。从而考虑进去了pixel-level和image-level的信息，得到`$\phi_FM$`
     3. 再然后，计算pixel-wise的相关性；从而进行对齐，如果符号相同，这为正，反之为负。
 
-![fig20](imgs/SDEMR_20.png)
+![fig19](imgs/SDEMR_19.png)
 
     4. 最后使用二次函数进行增强其对齐值，进行求评价即为评价值
